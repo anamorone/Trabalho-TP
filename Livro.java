@@ -1,0 +1,11 @@
+public class Livro {
+    public String titulo;
+    public String autor;
+    public boolean emprestado;
+
+    public Livro(String titulo, String autor){
+        this.titulo = titulo;
+        this.autor = autor;
+        
+    }
+}
