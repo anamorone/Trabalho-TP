@@ -11,37 +11,69 @@ public class Main {
 		Scanner teclado = new Scanner(System.in);
 
 
-		System.out.println("Digite a quantidade de produtos que deseja cadastrar: ");
-		int qnt = teclado.nextInt();
+		System.out.println("Escolha uma opção: \n1: Cadastrar livro.\n2: Listar livros.\n3: Emprestar livro.\n4: Devolver livro.\n5: Sair");
+		int opcao = teclado.nextInt();
 
-		for(int i = 1; i <= qnt; i++){
-			System.out.println("Digite o nome, codigo e preço do item " + i + ": ");
-			listaProduto.add(new Produto(teclado.next(), teclado.nextInt(), teclado.nextDouble()));
+		switch(opcao){
+			case 1:
+				System.out.println("Digite a quantidade de livros que deseja cadastrar: ");
+				int qnt = teclado.nextInt();
 
-		}
+				for(int i = 1; i <= qnt; i++){
+					System.out.println("Digite o título e autor do livro " + i);
+					listaLivros.add(new Livro(teclado.next(), teclado.next()));
+				}
+					break;
+			case 2:
+				for(int i = 0; i < listaLivros.size(); i++){
+					if(listaLivros.size() == 0){
+						System.out.println("Não existem livros armazenados.");
+					}else if(listaLivros.get(i).emprestado = false) {
+					System.out.println("Livro " + listaLivros.get(i).titulo + ", autor: " + listaLivros.get(i).autor + ", situação: Disponível.");
+					}else if(listaLivros.get(i).emprestado = true){
+					System.out.println("Livro " + listaLivros.get(i).titulo + ", autor: " + listaLivros.get(i).autor + ", situação: Emprestado.");
+					}
+				}
+					break;
+			case 3: 
+				System.out.println("Digite o título e autor do livro que deseja emprestar: ");
+				String nomeEmprestarTitulo = teclado.next();
+				String nomeEmprestarAutor = teclado.next();
+				int count = 0;
 
-		System.out.println("Insira o código do produto que deseja remover da lista de cadastro: ");
-		int codigo = teclado.nextInt();
-		int countRem = 0;
+				for(int i = 0; i < listaLivros.size(); i++){
+					if((listaLivros.get(i).titulo).equals(nomeEmprestarTitulo) && (listaLivros.get(i).autor).equals(nomeEmprestarAutor)){
+						listaLivros.get(i).emprestado = true;
+						System.out.println("Livro emprestado com sucesso.");
+						count++;
 
-		for(int i = 0; i < listaProduto.size(); i++){
-			
-			if(listaProduto.get(i).codigo == codigo){
-				listaProduto.remove(i);
-				System.out.println("O produto " + i + " foi removido com sucesso");
-				countRem++;
+					}
+				}
+				if(count == 0){
+					System.out.println("Livro não encontrado. Por favor, tente novamente.");
+				}
+
 				break;
-		}
-	
-		}
+			case 4:
+				System.out.println("Digite o título e autor do livro que deseja devolver: ");
+				String nomeDevolverTitulo = teclado.next();
+				String nomeDevolverAutor = teclado.next();
+				listaLivros.add(new Livro(nomeDevolverTitulo, nomeDevolverAutor));
+				for(int i = 0; i < listaLivros.size(); i++){
+					if((listaLivros.get(i).titulo).equals(nomeDevolverTitulo) && (listaLivros.get(i).autor).equals(nomeDevolverAutor)){
+						listaLivros.get(i).emprestado = false;
+						System.out.println("Livro devolvido com sucesso.");
+					}
+				}
+				break;
+			case 5:
+				break;
+			
+			default:
+				System.out.println("Por favor, selecione alguma opção informada.");
+				break;
 
-		if(countRem == 0){
-				System.out.println("O código " + codigo + " não pertence a nenhum produto cadastrado na lista.");
-			}
-
-		for(int i = 0; i < listaProduto.size(); i++){
-			System.out.println("nome do produto: " + listaProduto.get(i).nome + ", código: " + listaProduto.get(i).codigo + ", preço: R$:" + listaProduto.get(i).preco);
+				}
 		}
 
 	}
-}
