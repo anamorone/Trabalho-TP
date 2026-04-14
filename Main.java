@@ -95,7 +95,7 @@ public class Main {
 					media = 0;
 					double soma = (listaAlunos.get(i).nota1 + listaAlunos.get(i).nota2);
 					media = soma / 2;
-					System.out.println("A média do aluno " + listaAlunos.get(i).nome + "é: " + media);
+					System.out.println("A média do aluno " + listaAlunos.get(i).nome + " é: " + media);
 					somaGeral += soma;
 				}
 				if(listaAlunos.isEmpty()){
